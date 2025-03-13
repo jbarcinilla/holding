@@ -1,0 +1,68 @@
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Book of List</h2>
+  
+    <form [formGroup]="bookForm" (ngSubmit)="saveBook()">
+
+      <div class="form-group">
+            <label for="id">id</label>
+            <input type="number" id="id" formControlName="id" class="form-control" required>
+      </div> 
+
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" id="title" formControlName="title" class="form-control" required>
+      </div>
+
+      
+      <div class="form-group">
+        <label for="authors">Authors</label>
+        <input type="text" id="authors" formControlName="authors" class="form-control" required>
+      </div>
+
+      <div class="form-group">
+        <label for="gender">Gender</label>
+        <input type="text" id="gender" formControlName="gender" class="form-control" required>
+      </div>
+
+      <div class="form-group">
+        <label for="availability">availability</label>
+        <input type="number" id="availability" formControlName="availability" class="form-control" required min="0" max="1">
+      </div>
+      
+      <button type="submit" class="btn btn-primary mt-2">
+        {{ editando ? 'Update Book' : 'Add Book' }}
+      </button>
+    </form>
+  
+    <table class="table table-hover table-bordered text-center mt-4">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Authors</th>
+          <th>Gender</th>
+          <th>Availability</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let book of books">
+          <td>{{ book.id }}</td>
+          <td>{{ book.title}}</td>
+          <td>{{ book.authors  }}</td>
+          <td>{{ book.gender  }}</td>
+          <td>{{ book.availability  }}</td>
+          <td>
+            <div class="button-group">
+              <button (click)="editBook(book)" class="btn btn-warning btn-sm">Edit</button>
+              <button (click)="deleteBook(book.id)" class="btn btn-danger btn-sm">Delete</button>
+            </div>
+            
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  
+  
