@@ -46,21 +46,22 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let book of books">
+        <tr *ngFor="let book of books" class="text-center">
           <td>{{ book.id }}</td>
-          <td>{{ book.title}}</td>
-          <td>{{ book.authors  }}</td>
-          <td>{{ book.gender  }}</td>
-          <td>{{ book.availability  }}</td>
+          <td>{{ book.title }}</td>
+          <td>{{ book.authors }}</td>
+          <td>{{ book.gender }}</td>
+          <td>{{ book.availability }}</td>
           <td>
             <div class="button-group">
               <button (click)="editBook(book)" class="btn btn-warning btn-sm">Edit</button>
               <button (click)="deleteBook(book.id)" class="btn btn-danger btn-sm">Delete</button>
+              <button (click)="scheduleBook()" class="btn btn-primary btn-sm">Schedule</button>
             </div>
-            
           </td>
         </tr>
       </tbody>
+      
     </table>
   </div>
   

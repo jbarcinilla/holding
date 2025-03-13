@@ -61,4 +61,15 @@ public class BookController {
     public List<BookEntity> list() {
         return bookService.getAllBook();
     }
+
+    @PostMapping("/schedule/{code}")
+    @Tag(name = "Permit agent a book")
+    public ResponseEntity<String> scheduleBook(@PathVariable Long code) {
+        boolean scheduled = bookService.scheduleBook(code);
+        if (scheduled) {
+            return ResponseEntity.ok("Book agent witch success");
+        } else {
+            return ResponseEntity.badRequest().body("No agent book present error.");
+        }
+    }
 }

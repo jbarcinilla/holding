@@ -4,4 +4,9 @@
 .button-group .btn {
     width: 100px; /* Ajusta este valor según sea necesario */
   }
+.center-text {
+    text-align: center;
+    vertical-align: middle;
+  }
+  
   
