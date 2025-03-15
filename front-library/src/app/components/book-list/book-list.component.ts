@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpResponse } from '@angular/common/http'
-
+import { PopUpComponent } from '../pop-up/pop-up.component';
 
 interface Book {
   id: number;
@@ -14,12 +14,17 @@ interface Book {
   availability: boolean;
 }
 
+
 @Component({
   selector: 'app-book-list',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, HttpClientModule],
   templateUrl: './book-list.component.html',
-  styleUrls: ['./book-list.component.css']
+  styleUrls: ['./book-list.component.css'],
+  standalone: true,
+  imports: [
+    CommonModule, ReactiveFormsModule, HttpClientModule,
+    PopUpComponent, // Asegúrate de importar el componente aquí
+    // Otros módulos o componentes necesarios
+  ],
 })
 export class BookListComponent {
   books: Book[] = [];

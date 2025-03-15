@@ -1,3 +1,5 @@
+<app-pop-up></app-pop-up>
+
 <div class="container mt-4">
   <h2 class="text-center mb-4">Book of List</h2>
 
@@ -73,7 +75,11 @@
           <div class="button-group">
             <button (click)="editBook(book)" class="btn btn-warning btn-sm">Edit</button>
             <button (click)="deleteBook(book.id)" class="btn btn-danger btn-sm">Delete</button>
-            <button (click)="scheduleBook()" class="btn btn-primary btn-sm">Schedule</button>
+            <!-- Button to Trigger the Modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#formModal">
+              Schedule
+            </button>
+            
           </div>
         </td>
       </tr>
