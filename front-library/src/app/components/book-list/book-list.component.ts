@@ -5,7 +5,7 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
 import { HttpClientModule } from '@angular/common/http';
 import { HttpResponse } from '@angular/common/http'
 import { PopUpComponent } from '../pop-up/pop-up.component';
-
+import { SharedService } from '../../services/shared.service';
 interface Book {
   id: number;
   title: string;
@@ -27,12 +27,13 @@ interface Book {
   ],
 })
 export class BookListComponent {
+  selectedId: number | undefined; // Este valor se pasa al popup
   books: Book[] = [];
   bookForm: FormGroup;
   editando: boolean = false;
   bookEditando: Book | null = null;
 
-  constructor(private bookService: BookService, private fb: FormBuilder) {
+  constructor(private bookService: BookService, private fb: FormBuilder, private sharedService: SharedService) {
     this.bookForm = this.fb.group({
       id: [null],
       title: ['', Validators.required],
@@ -132,10 +133,7 @@ updateBookTable(updatedBook: Book): void {
   }
 }
 
-scheduleBook (){
-
-  
-}
-
-
+openPopup(id: number) {
+    this.sharedService.setId(id); // Establece el valor del ID
+  }
 }

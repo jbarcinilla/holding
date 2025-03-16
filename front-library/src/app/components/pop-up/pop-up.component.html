@@ -7,50 +7,53 @@
           <h5 class="modal-title w-100 text-center" id="formModalLabel">Loan Form</h5> <!-- Form title centered -->
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <form id="loanForm">
-          <div class="modal-body">
+        <div class="border p-4 rounded">
+          <form [formGroup]="loanForm" (ngSubmit)="onSubmitForm()">
             <div class="row">
-              <!-- Column 1 -->
+              <!-- Columna 1 -->
               <div class="col-md-6">
                 <div class="mb-3">
                   <label for="firstName" class="form-label">First Name</label>
-                  <input type="text" id="firstName" class="form-control" placeholder="Enter first name" required>
+                  <input type="text" id="firstName" formControlName="firstName" class="form-control" required>
                 </div>
                 <div class="mb-3">
                   <label for="idNumber" class="form-label">ID Number</label>
-                  <input type="text" id="idNumber" class="form-control" placeholder="Enter ID number" required>
+                  <input type="text" id="idNumber" class="form-control" [value]="id" readonly>
                 </div>
+
                 <div class="mb-3">
-                  <label for="loanDate" class="form-label">Loan Date</label>
-                  <input type="date" id="loanDate" class="form-control" required>
+                  <label for="returnDate" class="form-label">Return Date</label>
+                  <input type="date" id="returnDate" formControlName="returnDate" class="form-control" required>
                 </div>
+
+             
+
               </div>
-              <!-- Column 2 -->
+          
+              <!-- Columna 2 -->
               <div class="col-md-6">
                 <div class="mb-3">
                   <label for="lastName" class="form-label">Last Name</label>
-                  <input type="text" id="lastName" class="form-control" placeholder="Enter last name" required>
+                  <input type="text" id="lastName" formControlName="lastName" class="form-control" required>
                 </div>
+
                 <div class="mb-3">
-                  <label for="gender" class="form-label">Gender</label>
-                  <input type="text" id="gender" class="form-control" placeholder="Enter gender" required>
+                  <label for="loanDate" class="form-label">Loan Date</label>
+                  <input type="date" id="loanDate" formControlName="loanDate" class="form-control" required>
                 </div>
-                <div class="mb-3">
-                  <label for="returnDate" class="form-label">Return Date</label>
-                  <input type="date" id="returnDate" class="form-control" required>
-                </div>
+
               </div>
             </div>
-            <!-- Validation Message -->
-            <div class="text-danger" id="validationError" style="display: none;">
-              The loan date must not be after the return date, and the maximum time is 3 days.
+          
+            <!-- Botones -->
+            <div class="d-flex justify-content-between mt-3">
+              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </div>
-        </form>
+          </form>
+          
+        </div>
+        
       </div>
     </div>
   </div>
