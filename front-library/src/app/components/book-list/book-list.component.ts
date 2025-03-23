@@ -133,7 +133,7 @@ updateBookTable(updatedBook: Book): void {
   }
 }
 
-openPopup(id: number) {
+openPopup(id: boolean) {
     this.sharedService.setId(id); // Establece el valor del ID
   }
 }

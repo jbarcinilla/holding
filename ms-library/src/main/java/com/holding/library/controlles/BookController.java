@@ -2,7 +2,9 @@ package com.holding.library.controlles;
 
 
 import com.holding.library.entity.BookEntity;
+import com.holding.library.entity.UserEntity;
 import com.holding.library.services.BookServices;
+import com.holding.library.services.UserServices;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,6 +19,9 @@ import java.util.Optional;
 @CrossOrigin(origins = "http://localhost:4200") // Permitir Angular
 @Tag(name = "Ejemplo API", description = "Operaciones de prueba")
 public class BookController {
+
+    @Autowired
+    private UserServices userService;
 
     @Autowired
     private BookServices bookService;
@@ -62,14 +67,17 @@ public class BookController {
         return bookService.getAllBook();
     }
 
-    @PostMapping("/schedule/{code}")
+    @PostMapping("/schedule")
     @Tag(name = "Permit agent a book")
-    public ResponseEntity<String> scheduleBook(@PathVariable Long code) {
-        boolean scheduled = bookService.scheduleBook(code);
+    public ResponseEntity<String> scheduleBook(@RequestBody UserEntity user) {
+
+        boolean scheduled = userService.scheduleBook((long)user.getIdNumber());
         if (scheduled) {
-            return ResponseEntity.ok("Book agent witch success");
+            userService.saveUser(user);
+            return new ResponseEntity<>(HttpStatus.OK);
         } else {
             return ResponseEntity.badRequest().body("No agent book present error.");
         }
     }
+
 }

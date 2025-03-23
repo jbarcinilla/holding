@@ -5,11 +5,13 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class SharedService {
-  private idSource = new BehaviorSubject<number | null>(null);
+  private idSource = new BehaviorSubject<boolean | null>(null);
   currentId$ = this.idSource.asObservable();
 
   // Método para cambiar el ID
-  setId(id: number) {
+  setId(id: boolean) {
     this.idSource.next(id);
   }
+
+  
 }

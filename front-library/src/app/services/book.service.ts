@@ -11,7 +11,13 @@ interface Book {
   gender: string;
   availability: boolean;
 }
-
+interface User {
+  idNumber: number;
+  firstName: string;
+  lastName: string;
+  loanDate: string;
+  returnDate: boolean;
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -58,8 +64,11 @@ export class BookService {
     return this.http.get<void>(`${this.apiUrl}/${productId}`, { headers, observe: 'response'});
   }
 
-  getProductId2(productId: number): Observable<HttpResponse<void>> {
-     return this.http.get<void>(`${this.apiUrl}/${productId}`, { observe: 'response' }); 
-    }
+  saveShedule(user: User): Observable<HttpResponse<void>> {
+    const headers = this.getAuthHeaders();
+    return this.http.post<void>(`${this.apiUrl}/schedule`, user, { headers, observe: 'response' });
+  }
+
+  
 
 }
